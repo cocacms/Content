@@ -1,0 +1,31 @@
+.category-tags{
+    line-height: 38px;
+}
+
+.category-tag {
+    padding-left: 4px;
+    display: inline-block;
+    position: relative;
+}
+
+.category-tags .category-tag:first-child{
+    padding-left: 0px;
+
+}
+.category-tag i{
+    position: absolute;
+    top: -4px;
+    right: -6px;
+    display: none;
+    cursor: pointer;
+}
+.category-tag .btn-tag{
+    height: 22px;
+    line-height: 24px;
+    padding: 0 10px;
+    font-size: 12px;
+}
+
+.category-tag:hover i{
+    display: block;
+}

@@ -8,19 +8,19 @@ return [
         [
             "title" => "内容管理",
             "icon" => "coca-icon coca-icon-icon",
-            "href" => 'route[home]',
+            "href" => '',
             "spread" => false,
             "children" => [
                 [
                     "title" => "文章管理",
                     "icon" => "coca-icon coca-icon-207",
-                    "href" => 'route[home]',
+                    "href" => 'route[article@index]',
                     "spread" => false,
                 ],
                 [
                     "title" => "单页管理",
                     "icon" => "coca-icon coca-icon-page",
-                    "href" => 'route[home]',
+                    "href" => 'route[pager@index]',
                     "spread" => false,
                     "children" => [
 
@@ -29,7 +29,7 @@ return [
                 [
                     "title" => "友情链接",
                     "icon" => "coca-icon coca-icon-youqinglianjie2",
-                    "href" => 'route[home]',
+                    "href" => 'route[friendlyLink@index]',
                     "spread" => false,
                     "children" => [
 
