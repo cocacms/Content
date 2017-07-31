@@ -1,5 +1,6 @@
 <?php
 Route::group(['middleware'=>'web'],function (){
+    Route::get('/','PagerController@show')->name('pager@home');
     Route::group(['prefix'=>'pager'],function (){
         Route::get('/{tag}','PagerController@show')->name('pager@show');
     });

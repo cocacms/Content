@@ -179,11 +179,15 @@ class PagerController extends Controller
     }
 
 
-    public function show($tag)
+    public function show($tag = 'index')
     {
-        $pager = Pager::where('tag','=',$tag);
+        $pager = Pager::where('tag','=',$tag)->firstOrFail();
+
         $pager->template = $pager->template ? $pager->template : 'default';
-        return $this->view('pager.template.'.$pager->template);
+        $pager->content = base64_decode($pager->content);
+        $pager->additional = unserialize($pager->additional);
+        return $this->view('pager.template.'.$pager->template,
+            ['pager'=>$pager]);
     }
 
     private function getTemplateList(){
