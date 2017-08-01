@@ -46,6 +46,7 @@ class ArticleController extends Controller
                 ->orderBy('articles.id', 'asc')
                 ->where('article_categories.category_id','=',$categoryId)
                 ->whereNull('articles.deleted_at')
+                ->whereNotNull('articles.id')
                 ->paginate($this->pageSize);
 
         }
@@ -75,7 +76,7 @@ class ArticleController extends Controller
             'tname' => '不分类',
             'id' => null
         ];
-        $currentCategory = $request->input('category','default');
+        $currentCategory = $request->input('category',$this->categoryRoot);
         return $this->view('article.add',[
             'currentCategory'=>$currentCategory,
             'category'=> $category
@@ -102,7 +103,7 @@ class ArticleController extends Controller
     {
         $article = Article::findOrFail($id);
         $article->content = base64_decode($article->content);
-        $article->pic = $article->pic;
+        $article->pic = asset($article->pic);
 
         $category = CategoryFacade::buildTree($this->categoryRoot,true);
         $category[0] = [

@@ -129,7 +129,7 @@
                 @canshow(article@edit)
                 <a class="layui-btn layui-btn-mini edit_btn" data-id="@{{ item.id }}" data-url="{{route('article@edit',['id'=>''])}}"><i class="iconfont icon-edit"></i> 编辑</a>
                 @endcanshow
-                @canshow(promo@del)
+                @canshow(article@del)
                 <a class="layui-btn layui-btn-danger layui-btn-mini del_btn" data-id="@{{ item.id }}" data-url="{{route('article@del')}}"><i class="layui-icon">&#xe640;</i> 删除</a>
                 @endcanshow
             </td>

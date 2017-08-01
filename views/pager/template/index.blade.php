@@ -19,125 +19,36 @@
 
     <div class="main-content">
         <div class="am-g products">
-            <div class="am-u-sm-12 am-u-md-6 ">
-                <div class="item">
-                    <div class="pic">
-                        <img src="images/product.jpeg"/>
-                    </div>
-                    <div class="detail">
-                        <div>
-                            单价：1元
-                        </div>
-                        <div>
-                            数量：<span class="am-icon-plus-square"></span> <span>12</span> <span class="am-icon-minus-square"></span>
-                        </div>
-                    </div>
-                    <div class="buttons">
-                        <button type="button" class="am-btn am-btn-default am-radius">加入购物车<span class="am-badge am-badge-danger am-round">6</span></button>
-                        <button type="button" class="am-btn am-btn-default am-radius">立即购买</button>
-                    </div>
-                </div>
-            </div>
 
-            <div class="am-u-sm-12 am-u-md-6 ">
-                <div class="item">
-                    <div class="pic">
-                        <img src="images/product.jpeg"/>
-                    </div>
-                    <div class="detail">
-                        <div>
-                            单价：1元
+            @foreach(products($pager->additional['product_tag']) as $item)
+                @if($item->show == 1)
+                <div class="am-u-sm-12 am-u-md-6 ">
+                    <div class="item">
+                        <div class="pic">
+                            <img src="{{asset($item->pic)}}"/>
                         </div>
-                        <div>
-                            数量：<span class="am-icon-plus-square"></span> 12 <span class="am-icon-minus-square"></span>
+                        <div class="detail">
+                            <div>
+                                {{$item->name}}
+                            </div>
+                            <div class="no-select">
+                                数量：<span data-src="{{route('cart@minus',['pid'=>$item->id])}}" class="cart-action am-icon-minus-square"></span>
+                                <span class="cart-count" data-pid="{{$item->id}}">{{cart_product_count($item->id)}}</span>
+                                <span class="cart-action am-icon-plus-square"  data-src="{{route('cart@plus',['pid'=>$item->id])}}"></span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="buttons">
-                        <button type="button" class="am-btn am-btn-default am-radius">加入购物车</button>
-                        <button type="button" class="am-btn am-btn-default am-radius">立即购买</button>
+                        <div class="buttons">
+                            <button type="button" class="am-btn am-btn-default am-radius cart_add_btn">加入购物车
+                                @if(cart_product_count($item->id) > 0)
+                                <span class="am-badge am-badge-danger am-round">{{cart_product_count($item->id)}}</span>
+                                @endif
+                            </button>
+                            <button type="button" data-src="{{route('order@create')}}" class="am-btn am-btn-default am-radius cart_buy_btn">立即购买</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="am-u-sm-12 am-u-md-6 ">
-                <div class="item">
-                    <div class="pic">
-                        <img src="images/product.jpeg"/>
-                    </div>
-                    <div class="detail">
-                        <div>
-                            单价：1元
-                        </div>
-                        <div>
-                            数量：<span class="am-icon-plus-square"></span> 12 <span class="am-icon-minus-square"></span>
-                        </div>
-                    </div>
-                    <div class="buttons">
-                        <button type="button" class="am-btn am-btn-default am-radius">加入购物车</button>
-                        <button type="button" class="am-btn am-btn-default am-radius">立即购买</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="am-u-sm-12 am-u-md-6 ">
-                <div class="item">
-                    <div class="pic">
-                        <img src="images/product.jpeg"/>
-                    </div>
-                    <div class="detail">
-                        <div>
-                            单价：1元
-                        </div>
-                        <div>
-                            数量：<span class="am-icon-plus-square"></span> 12 <span class="am-icon-minus-square"></span>
-                        </div>
-                    </div>
-                    <div class="buttons">
-                        <button type="button" class="am-btn am-btn-default am-radius">加入购物车</button>
-                        <button type="button" class="am-btn am-btn-default am-radius">立即购买</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="am-u-sm-12 am-u-md-6">
-                <div class="item">
-                    <div class="pic">
-                        <img src="images/product.jpeg"/>
-                    </div>
-                    <div class="detail">
-                        <div>
-                            单价：1元
-                        </div>
-                        <div>
-                            数量：<span class="am-icon-plus-square"></span> 12 <span class="am-icon-minus-square"></span>
-                        </div>
-                    </div>
-                    <div class="buttons">
-                        <button type="button" class="am-btn am-btn-default am-radius">加入购物车</button>
-                        <button type="button" class="am-btn am-btn-default am-radius">立即购买</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="am-u-sm-12 am-u-md-6 ">
-                <div class="item">
-                    <div class="pic">
-                        <img src="images/product.jpeg"/>
-                    </div>
-                    <div class="detail">
-                        <div>
-                            单价：1元
-                        </div>
-                        <div>
-                            数量：<span class="am-icon-plus-square"></span> 12 <span class="am-icon-minus-square"></span>
-                        </div>
-                    </div>
-                    <div class="buttons">
-                        <button type="button" class="am-btn am-btn-default am-radius">加入购物车</button>
-                        <button type="button" class="am-btn am-btn-default am-radius">立即购买</button>
-                    </div>
-                </div>
-            </div>
+                @endif
+            @endforeach
 
         </div>
 
@@ -169,4 +80,5 @@
 @endsection
 
 @section('jsImport')
+    @import(js/cart,js,Shop)
 @endsection

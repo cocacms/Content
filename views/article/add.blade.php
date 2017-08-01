@@ -108,7 +108,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">点击量</label>
             <div class="layui-input-block">
-                <input type="text" name="click_count" value="" placeholder="默认0 顺序从小到大" class="layui-input">
+                <input type="text" name="click_count" value="" placeholder="文章点击量" class="layui-input">
             </div>
         </div>
 
