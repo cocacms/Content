@@ -3,13 +3,13 @@ Route::group(['middleware'=>'coca-admin-check'],function (){
 
     Route::group(['prefix'=>'article'],function (){
         Route::get('/list','ArticleController@_list')->name('article@list')->permissionName('获取文章列表');
-        Route::get('/','ArticleController@index')->name('article@index')->link('dictionary@list');
+        Route::get('/','ArticleController@index')->name('article@index')->link('article@list');
 
         Route::post('/','ArticleController@postAdd')->name('article@postAdd')->permissionName('创建文章');
-        Route::get('/addPage','ArticleController@add')->name('article@add')->link('dictionary@postAdd');
+        Route::get('/addPage','ArticleController@add')->name('article@add')->link('article@postAdd');
 
         Route::post('/edit/{id}','ArticleController@postEdit')->name('article@postEdit')->permissionName('编辑文章');
-        Route::get('/edit/{id}','ArticleController@edit')->name('article@edit')->link('dictionary@postEdit');
+        Route::get('/edit/{id}','ArticleController@edit')->name('article@edit')->link('article@postEdit');
 
         Route::delete('/','ArticleController@del')->name('article@del')->permissionName('删除文章');
 
