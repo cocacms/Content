@@ -36,4 +36,5 @@ class Article extends Model
         return $this->belongsTo('Module\AdminBase\Models\Member');
     }
 
+
 }

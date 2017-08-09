@@ -38,16 +38,18 @@ class ArticleController extends Controller
                 ->with('member')
                 ->paginate($this->pageSize);
         }else{
+            $categoryId = CategoryFacade::getIdsById($categoryId,true);
             $data = DB::table('article_categories')
                 ->select('articles.*','members.username')
                 ->leftJoin('articles', 'articles.id', '=', 'article_categories.article_id')
                 ->leftJoin('members', 'articles.member_id', '=', 'members.id')
                 ->orderBy('articles.order', 'asc')
                 ->orderBy('articles.id', 'asc')
-                ->where('article_categories.category_id','=',$categoryId)
+                ->whereIn('article_categories.category_id',$categoryId)
                 ->whereNull('articles.deleted_at')
                 ->whereNotNull('articles.id')
-                ->paginate($this->pageSize);
+                ->distinct()
+                ->paginate($this->pageSize,['articles.id']);
 
         }
         $data = $data->toArray();
@@ -182,7 +184,7 @@ class ArticleController extends Controller
 
     private function saveCategory($article,$request)
     {
-        $categories = $request->input('categories',[]);
+        $categories = array_values( $request->input('categories',[]) );
         if (count($categories) > 0){
             $categories = Category::whereIn('id',$categories)->get();
         }else{

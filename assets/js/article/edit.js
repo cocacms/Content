@@ -52,6 +52,7 @@ layui.config({
             var template = $($('#tag_template').html());
             template.find('span').html($(data.elem).find('[value='+data.value+']').data('name'));
             template.find('input').val(data.value);
+            template.find('input').attr('name','categories['+data.value+']');
             $('.category-tags').append(template);
         }
     });

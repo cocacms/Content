@@ -23,7 +23,7 @@
                         <div class="category-tag">
                             <span class="layui-btn layui-btn-mini layui-btn-radius btn-tag">{{$category->name}}</span>
                             <i class="layui-icon remove_category_tag">&#x1007;</i>
-                            <input type="hidden" name="categories[]" value="{{$category->id}}"/>
+                            <input type="hidden" name="categories[{{$category->id}}]" value="{{$category->id}}"/>
                         </div>
                     @endforeach
 

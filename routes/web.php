@@ -4,6 +4,11 @@ Route::group(['middleware'=>'web'],function (){
     Route::group(['prefix'=>'pager'],function (){
         Route::get('/{tag}','PagerController@show')->name('pager@show');
     });
+
+    Route::group(['prefix'=>'article'],function (){
+        Route::get('/{ids?}','ArticleWebController@_list')->name('article@web@list');
+        Route::get('/detail/{id}','ArticleWebController@detail')->name('article@web@detail');
+    });
 });
 
 
