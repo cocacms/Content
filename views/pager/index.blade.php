@@ -46,8 +46,8 @@
             <td><input type="checkbox" name="checked" lay-skin="primary" lay-filter="choose"></td>
             <td align="left">@{{ item.id }}</td>
             <td>@{{ item.name }}</td>
-            <td>@{{ item.tag }}</td>
-            <td>@{{ item.content }}</td>
+            <td>@{{ item.tag == null ? '-' : item.tag}}</td>
+            <td>@{{ item.content == null || item.content == '' ? '-' : item.content }}</td>
             <td>
                 @canshow(pager@edit)
                 <a class="layui-btn layui-btn-mini edit_btn" data-id="@{{ item.id }}" data-url="{{route('pager@edit',['id'=>''])}}"><i class="iconfont icon-edit"></i> 编辑</a>

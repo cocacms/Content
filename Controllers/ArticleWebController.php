@@ -20,7 +20,8 @@ class ArticleWebController extends Controller
         $categories = [];
         if (is_null($categoryId)){
             Session::flash('article_category_from','');
-            $data = Article::orderBy('order', 'asc')
+            $data = Article::where('status','<>',Article::STATUS_HIDE)
+                ->orderBy('order', 'asc')
                 ->orderBy('id', 'asc')
                 ->with('member')
                 ->paginate($this->pageSize);
@@ -39,6 +40,7 @@ class ArticleWebController extends Controller
                 ->leftJoin('members', 'articles.member_id', '=', 'members.id')
                 ->orderBy('articles.order', 'asc')
                 ->orderBy('articles.id', 'asc')
+                ->where('articles.status','<>',Article::STATUS_HIDE)
                 ->whereIn('article_categories.category_id',$allIds)
                 ->whereNull('articles.deleted_at')
                 ->whereNotNull('articles.id')

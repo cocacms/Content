@@ -20,13 +20,15 @@
     <div class="main-content">
         <div class="am-g products">
 
-            @foreach(products($pager->additional['product_tag']) as $item)
+            @foreach(recommended_products() as $item)
                 @if($item->show == 1)
                 <div class="am-u-sm-12 am-u-md-6 ">
                     <div class="item">
-                        <div class="pic">
-                            <img src="{{asset($item->pic)}}"/>
-                        </div>
+                        <a href="{{route('product@web@detail',['id'=>$item->id])}}">
+                            <div class="pic">
+                                <img src="{{asset($item->pic)}}"/>
+                            </div>
+                        </a>
                         <div class="detail">
                             <div>
                                 {{$item->name}}

@@ -30,6 +30,13 @@
         </div>
 
         <div class="layui-form-item">
+            <label class="layui-form-label">跳转链接</label>
+            <div class="layui-input-block">
+                <input type="text" name="jump" value="{{$pager->jump}}" placeholder="若填写则代表页面跳转到别的页面，链接以http://或https://开头，或者输入路由，路由参数用|隔开（例 admin@index|id=1|type=update）" autocomplete="false" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
             <label class="layui-form-label">页面标识</label>
             <div class="layui-input-block">
                 <input type="text" value="{{$pager->tag}}" name="tag" class="layui-input" placeholder="请输入页面标识，选填">

@@ -63,7 +63,7 @@ class PagerController extends Controller
         }else{
             $pager = Pager::findOrFail($id);
         }
-        $input = $request->only('name','tag','content','keyword','description','template','category_id');
+        $input = $request->only('name','tag','content','keyword','description','template','category_id','jump');
         $input['additional'] = array_values($request->input('additional',[]));
         $content = [];
         foreach ($input['additional'] as $contentItem){
@@ -80,6 +80,7 @@ class PagerController extends Controller
         $pager->description = $input['description'];
         $pager->template = $input['template'];
         $pager->category_id = $input['category_id'];
+        $pager->jump = $input['jump'];
 
         try{
             if($pager->save()){
@@ -179,13 +180,16 @@ class PagerController extends Controller
     }
 
 
-    public function show($tag = 'index')
+    public function showByTag($tag)
     {
-        $pager = Pager::where('tag','=',$tag)->firstOrFail();
+        $pager = pagers_by_tag($tag);
+        return $this->view('pager.template.'.$pager->template,
+            ['pager'=>$pager]);
+    }
 
-        $pager->template = $pager->template ? $pager->template : 'default';
-        $pager->content = base64_decode($pager->content);
-        $pager->additional = unserialize($pager->additional);
+    public function showById($id)
+    {
+        $pager = pagers_by_id($id);
         return $this->view('pager.template.'.$pager->template,
             ['pager'=>$pager]);
     }
@@ -207,6 +211,11 @@ class PagerController extends Controller
         closedir($current_dir);
 
         return $data;
+    }
+
+    public function web_index()
+    {
+        return $this->showByTag('index');
     }
 
 }

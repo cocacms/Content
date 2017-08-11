@@ -1,8 +1,9 @@
 <?php
 Route::group(['middleware'=>'web'],function (){
-    Route::get('/','PagerController@show')->name('pager@home');
+    Route::get('/','PagerController@web_index')->name('pager@home');
     Route::group(['prefix'=>'pager'],function (){
-        Route::get('/{tag}','PagerController@show')->name('pager@show');
+        Route::get('/tag/{tag}','PagerController@showByTag')->name('pager@showByTag');
+        Route::get('/{id}','PagerController@showById')->name('pager@showById');
     });
 
     Route::group(['prefix'=>'article'],function (){
