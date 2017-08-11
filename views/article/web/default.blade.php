@@ -1,5 +1,7 @@
 @extends('web.layout')
-@section('title', $pager->title or $pager->name.' - 众商平台')
+@section('title')
+    {{$pager->title or $pager->name.' - 众商平台'}}
+@endsection
 @section('description', $pager->description)
 @section('keywords', $pager->keyword)
 @section('cssImport')
@@ -7,24 +9,29 @@
 @section('content')
     <div class="main-content article">
         @php
-            $cIds = [];
-            $categoriesStr = [];
-            if($categories instanceof \Baum\Extensions\Eloquent\Collection){
-                foreach ($categories as $category){
-                    $cIds[] = $category->id;
-                    $categoriesStr[] = $category->name;
-                }
-            }else{
-                foreach ($pager->categories as $category){
-                    $cIds[] = $category->id;
-                    $categoriesStr[] = $category->name;
-
-                }
-            }
+{{--            $cIds = [];--}}
+{{--            $categoriesStr = [];--}}
+{{--            if($categories instanceof \Baum\Extensions\Eloquent\Collection){--}}
+{{--                foreach ($categories as $category){--}}
+{{--                    $cIds[] = $category->id;--}}
+{{--                    $categoriesStr[] = $category->name;--}}
+{{--                    $categoriesStr[] = $category->name;--}}
+{{--                    if($category->tag == 'article') break;--}}
+{{--                }--}}
+{{--            }else{--}}
+{{--                foreach ($pager->categories as $category){--}}
+{{--                    $cIds[] = $category->id;--}}
+{{--                    $categoriesStr[] = $category->name;--}}
+{{--                    if($category->tag == 'article') break;--}}
+{{----}}
+{{--                }--}}
+{{--            }--}}
+{{--            $categoriesStr = array_unique($categoriesStr);--}}
         @endphp
         <ol class="am-breadcrumb">
             <li><a href="{{route('pager@home')}}">首页</a></li>
-            <li><a href="{{route('article@web@list',['ids'=>implode('-',$cIds)])}}">{{count($categoriesStr) == 0 ? '文章列表' : implode(',',$categoriesStr)}}</a></li>
+            {{--<li><a href="{{route('article@web@list',['ids'=>implode('-',$cIds)])}}">{{count($categoriesStr) == 0 ? '文章列表' : implode(',',$categoriesStr)}}</a></li>--}}
+            <li><a href="{{route('article@web@list')}}">文章中心</a></li>
             <li class="am-active">{{$pager->title or $pager->name}}</li>
         </ol>
         <h2>{{$pager->title or $pager->name}}</h2>

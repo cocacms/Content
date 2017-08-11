@@ -17,38 +17,33 @@ class ArticleWebController extends Controller
 
         $categoryId = $ids;
         $data = null;
-        $categories = [];
         if (is_null($categoryId)){
-            Session::flash('article_category_from','');
-            $data = Article::where('status','<>',Article::STATUS_HIDE)
-                ->orderBy('order', 'asc')
-                ->orderBy('id', 'asc')
-                ->with('member')
-                ->paginate($this->pageSize);
+            $categoryId = CategoryFacade::getIds('article',true);
         }else{
             $categoryId = explode('-',$categoryId);
-            Session::flash('article_category_from',$categoryId);
-            $allIds = [];
-            foreach ($categoryId as $_id){
-                $_categoryIds = CategoryFacade::getIdsById($_id,true);
-                $allIds = array_merge($allIds,$_categoryIds);
-            }
-            $allIds = array_unique($allIds);
-            $data = DB::table('article_categories')
-                ->select('articles.*','members.username')
-                ->leftJoin('articles', 'articles.id', '=', 'article_categories.article_id')
-                ->leftJoin('members', 'articles.member_id', '=', 'members.id')
-                ->orderBy('articles.order', 'asc')
-                ->orderBy('articles.id', 'asc')
-                ->where('articles.status','<>',Article::STATUS_HIDE)
-                ->whereIn('article_categories.category_id',$allIds)
-                ->whereNull('articles.deleted_at')
-                ->whereNotNull('articles.id')
-                ->distinct()
-                ->paginate($this->pageSize,['articles.id']);
-            $categories = Category::whereIn('id',$categoryId)->get();
-
         }
+        Session::flash('article_category_from',$categoryId);
+        $allIds = [];
+        foreach ($categoryId as $_id){
+            $_categoryIds = CategoryFacade::getIdsById($_id,true);
+            $allIds = array_merge($allIds,$_categoryIds);
+        }
+        $allIds = array_unique($allIds);
+        $data = DB::table('article_categories')
+            ->select('articles.*','members.username')
+            ->leftJoin('articles', 'articles.id', '=', 'article_categories.article_id')
+            ->leftJoin('members', 'articles.member_id', '=', 'members.id')
+            ->orderBy('articles.order', 'asc')
+            ->orderBy('articles.id', 'asc')
+            ->where('articles.status','<>',Article::STATUS_HIDE)
+            ->whereIn('article_categories.category_id',$allIds)
+            ->whereNull('articles.deleted_at')
+            ->whereNotNull('articles.id')
+            ->distinct()
+            ->paginate($this->pageSize,['articles.id']);
+
+        $categories = Category::whereIn('id',$categoryId)->get();
+
         $pager = $data;
         $data = $data->toArray();
         $data = collect($data['data'])->map(function ($item){

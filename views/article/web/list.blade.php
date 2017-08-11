@@ -8,15 +8,16 @@
 
     <div class="main-content article-list">
         @php
-            $categoriesStr = [];
-            foreach ($categories as $category){
-                $categoriesStr[] = $category->name;
-            }
+{{--            $categoriesStr = [];--}}
+{{--            foreach ($categories as $category){--}}
+{{--                $categoriesStr[] = $category->name;--}}
+{{--                if($category->tag == 'article') break;--}}
+{{--            }--}}
         @endphp
 
         <ol class="am-breadcrumb">
             <li><a href="{{route('pager@home')}}">首页</a></li>
-            <li class="am-active">{{count($categoriesStr) == 0 ? '文章列表' : implode(',',$categoriesStr)}}</li>
+            <li class="am-active">文章中心</li>
         </ol>
         <ul>
         @foreach($data as $item)
