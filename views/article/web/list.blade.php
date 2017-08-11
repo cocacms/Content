@@ -23,7 +23,7 @@
         @foreach($data as $item)
             <li>
                 <a href="{{route('article@web@detail',['id'=> $item['id']])}}" title="{{$item['excerpt']}}">
-                    <img src="{{empty($item['pic']) ? asset('images/default.png') : asset($item->pic)}}">
+                    <img src="{{empty($item['pic']) ? asset('images/default.png') : asset($item['pic'])}}">
                     <div>
                         <p>
                             {{$item['title']}}
