@@ -6,7 +6,7 @@
 @endsection
 @section('content')
 
-    <div class="main-content article-list">
+    <div class="main-content article-list2">
         @php
 {{--            $categoriesStr = [];--}}
 {{--            foreach ($categories as $category){--}}
@@ -23,15 +23,10 @@
         @foreach($data as $item)
             <li>
                 <a href="{{route('article@web@detail',['id'=> $item['id']])}}" title="{{$item['excerpt']}}">
-                    <img src="{{empty($item->pic) ? asset('images/default.png') : asset($item->pic)}}">
-                    <div>
-                        <p>
-                            {{$item['title']}}
-                        </p>
-                        <p class="time">
-                            {{$item['push_time'] or $item['created_at']}}
-                        </p>
-                    </div>
+                    {{$item['title']}}
+                    <span class="time">
+                        {{$item['push_time'] or $item['created_at']}}
+                    </span>
                 </a>
             </li>
         @endforeach
