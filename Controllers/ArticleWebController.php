@@ -13,7 +13,7 @@ class ArticleWebController extends Controller
 {
     public function _list($ids = null)
     {
-//        $this->pageSize = 1;
+        pagers_set_current(pagers_by_tag('article'));
 
         $categoryId = $ids;
         $data = null;
@@ -63,6 +63,8 @@ class ArticleWebController extends Controller
 
     public function detail($id)
     {
+        pagers_set_current(pagers_by_tag('article'));
+
         $categories = null;
         if (Session::has('article_category_from')){
             $article_category_from = Session::get('article_category_from');

@@ -2,6 +2,7 @@
 namespace Module\Content;
 
 use App\Http\Middleware\ModuleMiddlewareBase;
+use Module\Content\Middlewares\PagerActiveMiddleware;
 
 class ModuleMiddlewares
 {
@@ -23,7 +24,9 @@ class ModuleMiddlewares
      * @var array
      */
     protected $middlewareGroups = [
-
+        'web'=>[
+            PagerActiveMiddleware::class
+        ],
     ];
 
     /**

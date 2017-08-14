@@ -67,24 +67,26 @@
         </ol>
 
 
-        <div class="am-g products" style="padding-top:1rem;">
+        <div class="am-g products">
 
             @if($products->count() == 0)
                 <p style="text-align: center">暂无产品！</p>
             @endif
 
             @foreach($products as $item)
-                <div class="am-u-sm-12 am-u-md-6 ">
+                <div class="am-u-sm-12 am-u-md-6" >
                     <div class="item">
-                        <a href="{{route('product@web@detail',['id'=>$item->id])}}">
+                        <a href="{{route('product@web@detail',['id'=>$item->id])}}" title="{{$item->name}}">
                         <div class="pic">
                             <img src="{{asset($item->pic)}}"/>
                         </div>
                         </a>
                         <div class="detail">
-
-                            <div>
+                            <div class="title" title="{{$item->name}}">
                                 {{$item->name}}
+                            </div>
+                            <div class="price">
+                                ￥{{number_format($item->price,2)}}
                             </div>
 
                             <div class="no-select">

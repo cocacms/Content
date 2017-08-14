@@ -14,6 +14,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
 use Module\AdminBase\Facades\CategoryFacade;
 use Module\Content\Models\Pager;
 
@@ -183,6 +185,10 @@ class PagerController extends Controller
     public function showByTag($tag)
     {
         $pager = pagers_by_tag($tag);
+        pagers_set_current($pager);
+        if(!is_null($pager->jump)){
+            return redirect(route_parse($pager->jump));
+        }
         return $this->view('pager.template.'.$pager->template,
             ['pager'=>$pager]);
     }
@@ -190,6 +196,10 @@ class PagerController extends Controller
     public function showById($id)
     {
         $pager = pagers_by_id($id);
+        pagers_set_current($pager);
+        if(!is_null($pager->jump)){
+            return redirect(route_parse($pager->jump));
+        }
         return $this->view('pager.template.'.$pager->template,
             ['pager'=>$pager]);
     }

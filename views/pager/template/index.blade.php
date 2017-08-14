@@ -20,21 +20,26 @@
     </div>
 
     <div class="main-content">
+        <h2>产品推荐</h2>
         <div class="am-g products">
 
             @foreach(recommended_products() as $item)
                 @if($item->show == 1)
-                <div class="am-u-sm-12 am-u-md-6 ">
+                <div class="am-u-sm-12 am-u-md-6">
                     <div class="item">
-                        <a href="{{route('product@web@detail',['id'=>$item->id])}}">
+                        <a href="{{route('product@web@detail',['id'=>$item->id])}}" title="{{$item->name}}">
                             <div class="pic">
                                 <img src="{{asset($item->pic)}}"/>
                             </div>
                         </a>
                         <div class="detail">
-                            <div>
+                            <div class="title" title="{{$item->name}}">
                                 {{$item->name}}
                             </div>
+                            <div class="price">
+                                ￥{{number_format($item->price,2)}}
+                            </div>
+
                             <div class="no-select">
                                 数量：<span data-src="{{route('cart@minus',['pid'=>$item->id])}}" class="cart-action am-icon-minus-square"></span>
                                 <span class="cart-count" data-pid="{{$item->id}}">{{cart_product_count($item->id)}}</span>
