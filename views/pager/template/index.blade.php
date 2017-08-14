@@ -10,7 +10,9 @@
         <ul class="am-slides">
             @foreach(promo($pager->additional['slider_tag']) as $item)
             <li>
-                <img src="{{asset($item->pic)}}">
+                <a href="{{route_parse($item->link)}}" target="{{$item->target}}">
+                    <img src="{{asset($item->pic)}}"/>
+                </a>
             </li>
             @endforeach
 
@@ -59,9 +61,11 @@
 
             <ul class="am-avg-sm-3">
 
-                @foreach(promo($pager->additional['new_tag'],3) as $item)
+                @foreach(promo($pager->additional['new_tag']) as $item)
                     <li>
-                        <img src="{{asset($item->pic)}}">
+                        <a href="{{route_parse($item->link)}}" target="{{$item->target}}">
+                            <img src="{{asset($item->pic)}}">
+                        </a>
                     </li>
                 @endforeach
             </ul>
