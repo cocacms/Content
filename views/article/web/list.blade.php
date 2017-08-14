@@ -25,7 +25,7 @@
                 <a href="{{route('article@web@detail',['id'=> $item['id']])}}" title="{{$item['excerpt']}}">
                     <img src="{{empty($item['pic']) ? asset('images/default.png') : asset($item['pic'])}}">
                     <div>
-                        <p>
+                        <p class="title">
                             {{$item['title']}}
                         </p>
                         <p class="time">

@@ -5,6 +5,18 @@
 @section('description', $pager->description)
 @section('keywords', $pager->keyword)
 @section('cssImport')
+    <style>
+        @media only screen and (max-width: 640px){
+            h2{
+                margin-top: 10px;
+                font-size: 18px;
+            }
+            p.info{
+                font-size: 14px;
+            }
+        }
+
+    </style>
 @endsection
 @section('content')
     <div class="main-content article">
