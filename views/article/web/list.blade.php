@@ -1,5 +1,5 @@
 @extends('web.layout')
-@section('title', '文章列表 - 众商平台')
+@section('title', '文章列表 - '.system_config('webname'))
 @section('description', '')
 @section('keywords', '')
 @section('cssImport')

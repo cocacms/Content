@@ -1,5 +1,5 @@
 @extends('web.layout')
-@section('title', $pager->name.' - 众商平台')
+@section('title', $pager->name.' - '.system_config('webname'))
 @section('description', $pager->description)
 @section('keywords', $pager->keyword)
 @section('cssImport')
@@ -77,7 +77,7 @@
         </div>
 
         <div class="about" id="about">
-            <h2>关于众商</h2>
+            <h2>关于{{system_config('webname')}}</h2>
             <div class="box">
                 <div class="content">
                     {!! $pager->content !!}

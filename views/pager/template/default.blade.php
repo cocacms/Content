@@ -1,6 +1,6 @@
 @extends('web.layout')
 @section('title')
-    {{$pager->title or $pager->name . ' - 众商平台'}}
+    {{$pager->title or $pager->name . ' - '.system_config('webname')}}
 @endsection
 @section('description', $pager->description)
 @section('keywords', $pager->keyword)
