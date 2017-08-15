@@ -18,7 +18,7 @@
 
             function product_category_tree_build_fun($trees,$selectCategory){
                 $html = '';
-
+                $pop_count = 0;
                 $pop = '<ul class="pop">';
                 foreach ($trees as $tree){
                     $link = route('pager@showByTag',['tag'=>'product-list','category'=>$tree->id]);
@@ -27,6 +27,7 @@
                     }else{
                         $pop.= "<li ><a href=\"$link\">· $tree->name</a></li>";
                     }
+                    $pop_count++;
                 }
                 $pop .= '</ul>';
 
@@ -38,7 +39,7 @@
                             $css = "am-active";
 
                         }
-                        if($tree->children->count() > 0){
+                        if($pop_count > 1){
                             $css .= " toggle";
                         }
                         $html.= "<li class=\"$css\"><a href=\"#\">$tree->name</a>$pop</li>";
@@ -47,6 +48,7 @@
                         }
                         return $html;
                     }
+
                     if($selectCategory->depth + 1 == $tree->depth){
                         $html.= "<li class=\"am-active toggle\"><a href=\"#\">更多</a>$pop</li>";
                         return $html;
