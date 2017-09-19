@@ -43,7 +43,7 @@
                             <div class="no-select">
                                 数量：<span data-src="{{route('cart@minus',['pid'=>$item->id])}}" class="cart-action am-icon-minus-square"></span>
                                 {{--<span class="cart-count" data-pid="{{$item->id}}">{{cart_product_count($item->id)}}</span>--}}
-                                <input style="text-align: center;width: 50px;" data-src="{{route('cart@adjust',['pid'=>$item->id,'count'=>''])}}" type="text" name="data[{{$item->id}}]" value="{{cart_product_count($item->id)}}" class="number" onKeyUp="this.value=this.value.replace(/[^\d]/g,'');">
+                                <input style="text-align: center;width: 50px;" data-src="{{route('cart@adjust',['pid'=>$item->id,'count'=>''])}}" data-pid="{{$item->id}}" type="text" name="data[{{$item->id}}]" value="{{cart_product_count($item->id)}}" class="number" onKeyUp="this.value=this.value.replace(/[^\d]/g,'');">
                                 <span class="cart-action am-icon-plus-square"  data-src="{{route('cart@plus',['pid'=>$item->id])}}"></span>
                             </div>
                         </div>
